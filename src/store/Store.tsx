@@ -28,6 +28,7 @@ const useSleekStore = create<IStoreState>((set) => ({
         ),
       };
     }
+    item.quantity = 1;
     return { cartItems: [...state.cartItems, item] };
   }),
   removeCartItems: (id:string) => set((state) => {

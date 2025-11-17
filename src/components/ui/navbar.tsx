@@ -23,10 +23,8 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 import Cart from "@/pages/cart/Cart";
-import useSleekStore from "@/store/Store";
 
 const Navbar = () => {
-    const cartItems = useSleekStore((state)=> state.cartItems)
     return (
         <nav className="flex gap-20 justify-between items-center">
             <img src={Logo} height={80} width={80} />
@@ -51,7 +49,7 @@ const Navbar = () => {
                 <Popover>
                     <PopoverTrigger><ShoppingCartIcon/></PopoverTrigger>
                     <PopoverContent>
-                        {cartItems.length > 0 ? <Cart/> : <div className="h-[150px] flex items-center justify-center">Your cart is empty!!</div>}
+                        <Cart/>
                     </PopoverContent>
                 </Popover>
                 <MenubarMenu>

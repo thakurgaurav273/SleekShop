@@ -5,19 +5,27 @@ import { Button } from "../ui/button"
 import useSleekStore from "@/store/Store"
 
 const CardItem = ({ item, items, addToCart, removeCartItem }: { item: ICartItem, items: ICartItem[], addToCart: (item: ICartItem) => void, removeCartItem: (id: string) => void }) => {
+    // const matchingItem = items.find(cartItem => cartItem.id === item.id);
+    // const quantity = matchingItem ? matchingItem.quantity : 0;
     return (
         <Card className="w-[300px]">
             <CardHeader>
                 <CardTitle>{item.title}</CardTitle>
                 <CardDescription>{item.subtitle}</CardDescription>
             </CardHeader>
-            <CardContent className="self-center">
-                <img src={item.image} height={100} width={100} />
+            <CardContent>
+                <img className="rounded-2xl" src={item.image} height={100} width={100} />
                 <div className="flex gap-4">
-                    <Button className="my-3" onClick={() => addToCart(item)}>
-                        {items.some((cartItem) => cartItem.id === item.id) ? '+' : 'Add'}
+                    <Button className="my-3" onClick={() => {
+                        addToCart(item)
+                        alert("Item added to cart!")
+                    }}>
+                        Add to Cart
                     </Button>
-                    {items.some((cartItem) => cartItem.id === item.id) && <Button onClick={()=>{removeCartItem(item.id)}} className="my-3"> - </Button>}
+                    {/* {quantity > 0 && <p className="flex items-center justify-center">
+                        {quantity}
+                    </p>}
+                    {items.some((cartItem) => cartItem.id === item.id) && <Button onClick={() => { removeCartItem(item.id) }} className="my-3"> - </Button>} */}
                 </div>
             </CardContent>
             <CardFooter>

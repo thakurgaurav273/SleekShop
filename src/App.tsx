@@ -3,6 +3,7 @@ import './App.css'
 import useSleekStore from './store/Store'
 import Cart from './pages/cart/Cart';
 import Home from './pages/home/Home';
+import LoginPage from './pages/login/Login';
 
 function App() {
   const user = useSleekStore((state) => state.user);
@@ -10,14 +11,16 @@ function App() {
     return (
       <Routes>
         <Route path='/cart' element={<Cart />} />
+        <Route path='/' element={<Home />} />
       </Routes>
     )
   }
   const publicRoute = () => {
     return (
       <Routes>
-        <Route path="*" element={<Navigate to="/" replace />} />        
+        <Route path="*" element={<Navigate to="/" replace />} />
         <Route path='/' element={<Home />} />
+        <Route path='/login' element={<LoginPage />} />
       </Routes>
     )
   }
