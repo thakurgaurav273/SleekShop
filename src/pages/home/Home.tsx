@@ -1,8 +1,12 @@
 import Navbar from '@/components/ui/navbar'
+import ItemsList from '@/components/view/ItemsList'
 
 const Home = () => {
   return (
-         <Navbar/>
+    <div>
+      <Navbar />
+      <ItemsList/>
+    </div>
 
   )
 }
