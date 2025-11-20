@@ -8,7 +8,7 @@ const CardItem = ({ item, items, addToCart, removeCartItem }: { item: ICartItem,
     const matchingItem = items.find(cartItem => cartItem.id === item.id);
     const quantity = matchingItem ? matchingItem.quantity : 0;
     return (
-        <Card className="w-[200px] py-4">
+        <Card className="w-full py-4">
             <CardHeader>
                 <CardTitle>{item.title}</CardTitle>
             </CardHeader>
@@ -36,19 +36,20 @@ const Cart = () => {
     const user = useSleekStore((state) => state.user)
     const navigate = useNavigate();
     return (
-        user ? <div className="my-4 gap-4 flex flex-row flex-wrap">
+        user ? <div className="gap-4 flex flex-row flex-wrap max-h-[400px] overflow-scroll">
+            <p className="font-bold">Cart</p>
             {cartItems.length > 0 && cartItems.map((item) => {
                 return (
-                    <div key={item.id}>
+                    <div key={item.id} className="w-full">
                         <CardItem item={item} items={cartItems} addToCart={addCartItems} removeCartItem={removeCartItem} />
                     </div>
                 )
             })}
-            {cartItems.length === 0 && <div className="h-[150px] w-full flex items-center justify-center">Your cart is empty!!</div>}        
-            </div> : <div className="h-[150px] flex items-center justify-center flex-col gap-4">
-                <p>You aren't logged-in 🙁 </p>
-                <Button onClick={()=> navigate('/login', {replace: true})}> Login </Button>
-            </div>
+            {cartItems.length === 0 && <div className="h-[150px] w-full flex items-center justify-center">Your cart is empty!!</div>}
+        </div> : <div className="h-[150px] flex items-center justify-center flex-col gap-4">
+            <p>You aren't logged-in 🙁 </p>
+            <Button onClick={() => navigate('/login', { replace: true })}> Login </Button>
+        </div>
     )
 }
 
