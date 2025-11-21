@@ -26,7 +26,7 @@ import Cart from "@/pages/cart/Cart";
 
 const Navbar = () => {
     return (
-        <nav className="flex gap-20 justify-between items-center">
+        <nav className="flex justify-between items-center">
             <img src={Logo} height={80} width={80} />
             <NavigationMenu viewport={false}>
                 <NavigationMenuList>
@@ -42,7 +42,6 @@ const Navbar = () => {
                             <NavigationMenuLink>Link 2</NavigationMenuLink>
                         </NavigationMenuContent>
                     </NavigationMenuItem>
-
                 </NavigationMenuList>
             </NavigationMenu>
             <Menubar className="flex border-0 bg-transparent shadow-none gap-10">

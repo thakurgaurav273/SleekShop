@@ -61,6 +61,33 @@ const Home = () => {
     )
   }
 
+  const infiniteScroll = () => {
+    const [list, setList] = useState(filteredData.slice(0, 6));
+    const [hasMore, setHasMore] = useState(true);
+
+    const handleScroll = (e:any) => {
+      const { scrollTop, scrollHeight, clientHeight } = e.target;
+      if (scrollTop + clientHeight >= scrollHeight - 10 && hasMore) {
+        const nextItems = filteredData.slice(list.length, list.length + 6);
+        if (nextItems.length > 0) {
+          setList((prev) => [...prev, ...nextItems]);
+        } else {
+          setHasMore(false);
+        }
+      }
+    };
+
+    return (
+      <div id="list-map" className='bg-[#f5f5f5] w-full self-end top-11 py-2 flex flex-col gap-2 w-[300px] max-h-[200px] overflow-auto' onScroll={handleScroll}>
+        {list.map((item: any) => (
+          <div key={item.id} className='bg-[#e3e3e3] gap-4 px-3 py-1 mx-[10px] rounded-md'>
+            {item.title}
+          </div>
+        ))}
+      </div>
+    )
+  }
+
   return (
     <div className='p-3'>
       <Navbar />
@@ -68,6 +95,7 @@ const Home = () => {
         {getSearchBar()}
         {searchKey.trim() && filteredList()}
       </div>
+      {/* {infiniteScroll()} */}
       <ItemsList />
     </div>
   )
